@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const port = process.env.PORT || 3000; // run on heroku || run locally
 
 var app = express();
 
@@ -34,9 +35,9 @@ app.use((req, res, next)=>{									//log file
 	next();
 })
 
-app.use((req, res, next)=>{									//blocker
-	res.render('maintenance.hbs');
-})
+// app.use((req, res, next)=>{									//blocker
+// 	res.render('maintenance.hbs');
+// })
 
 app.use(express.static(__dirname + '/public'));				// middle ware telling path
 
@@ -83,7 +84,7 @@ app.get('/about', (req, res)=>{
 
 
 
-app.listen(3000, ()=>{
+app.listen(port, ()=>{
 
-	console.log('server is running on port 3000');
+	console.log(`server is running on port ${port}`);
 });
